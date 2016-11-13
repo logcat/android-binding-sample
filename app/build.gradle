@@ -4,23 +4,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.databinding:dataBinder:1.0-rc0"
-        classpath 'me.tatarka:gradle-retrolambda:3.1.0'
+        classpath 'me.tatarka:gradle-retrolambda:3.3.1'
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.android.databinding'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25"
 
     defaultConfig {
         applicationId "net.logcat.binding"
-        minSdkVersion 9
-        targetSdkVersion 22
+        minSdkVersion 14
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -30,13 +28,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:recyclerview-v7:25.0.0'
+
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+
     compile 'io.reactivex:rxjava:1.0.11'
     compile 'io.reactivex:rxandroid:0.24.0'
-    compile 'com.android.support:recyclerview-v7:22.0.0'
 }
